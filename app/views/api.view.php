@@ -10,7 +10,7 @@
             $status = array(
                 200 => "OK",
                 201 => "Created",
-                400 => "Bad Request",
+                400 => "Bad Request", //Se agregó el 10/11/2023 (no necesariamente es correcto)
                 404 => "Not found",
                 500 => "Internal server error",
             );
