@@ -7,17 +7,15 @@ class SuggestionModel  extends Model {
         $query = $this->db->prepare('SELECT * FROM sugerencias');
         $query->execute();
 
-        // $sugerencia es un arreglo de sugerencias
-        $sugerencia = $query->fetchAll(PDO::FETCH_OBJ);
+        $sugerencias = $query->fetchAll(PDO::FETCH_OBJ);
 
-        return $sugerencia;
+        return $sugerencias;
     }
 
     function getSuggestion($id) {
         $query = $this->db->prepare('SELECT * FROM sugerencias WHERE id = ?');
         $query->execute([$id]);
 
-        // $sugerencia es una sugerencias sola
         $sugerencia = $query->fetch(PDO::FETCH_OBJ);
 
         return $sugerencia;
@@ -41,8 +39,8 @@ class SuggestionModel  extends Model {
         $query->execute([$id]);
     }
 
-    function updateSuggestionData($id, $titulo, $descripción, $prioridad) {    
-        $query = $this->db->prepare('UPDATE sugerencias SET titulo = ?, descripción = ?, prioridad = ?, genero = ? WHERE id = ?');
+    function updateSuggestionData($id, $titulo, $genero, $descripción, $prioridad) {    
+        $query = $this->db->prepare('UPDATE sugerencias SET titulo = ?, genero = ?, descripción = ?, prioridad = ?WHERE id = ?');
         $query->execute([$titulo, $descripción, $prioridad, $id]);
     }
 }

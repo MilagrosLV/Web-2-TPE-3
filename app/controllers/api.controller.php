@@ -12,6 +12,6 @@
 
         function getData() {
             return json_decode($this->data);
-        }
+        } //Devuelve un JSON de loos datos sis es que son necesitados.
     }
     
