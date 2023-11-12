@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2023 a las 22:55:43
+-- Tiempo de generación: 12-11-2023 a las 22:45:27
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -35,17 +35,23 @@ CREATE TABLE `sugerencias` (
   `genero` int(12) NOT NULL,
   `descripción` text NOT NULL,
   `prioridad` int(12) NOT NULL,
-  `finalizada` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Índices para tablas volcadas
+-- Volcado de datos para la tabla `sugerencias`
 --
 
-INSERT INTO `tareas` (`id`, `titulo`,`genero` `descripción`, `prioridad`, `finalizada`) VALUES
-(25, 'asdsa', 'asdasd', 1, 0),
-(26, 'Titulo modificado', 'Una descripcion', 87, 0),
-(27, 'Nuevo titulo', 'Otra descripcion', 2, 0);
+INSERT INTO `sugerencias` (`id`, `titulo`, `genero`, `descripción`, `prioridad`) VALUES
+(12, 'fvgbhnjmk,.', 1, 'xdfghjklñ{\n', 1),
+(13, 'vbnm,', 2, 'vbnm,.<-', 1),
+(14, 'cvbnm,.', 3, 'cvbnm,.-', 1),
+(15, 'cvbnm,.', 1, 'cvbnm,.-', 2),
+(16, 'vbnm,.-', 1, 'vbnm,.-', 3),
+(17, ' fghjklñ<', 2, 'oiuyt', 2, 1),
+(18, '345678', 2, '98765', 3),
+(19, '3456789', 3, 'sdfghjklñ', 3),
+(20, 'jnhbgvcx', 3, '09876', 2),
+(21, 'aaaaaaaaaaaaaaaaaaaaaaaaaa', 2, 'bbbbbbbbbbbbb', 2);
 
 --
 -- Índices para tablas volcadas
@@ -65,7 +71,7 @@ ALTER TABLE `sugerencias`
 -- AUTO_INCREMENT de la tabla `sugerencias`
 --
 ALTER TABLE `sugerencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
