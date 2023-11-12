@@ -1,7 +1,7 @@
 <?php
     require_once 'app/controllers/api.controller.php';
-
     require_once 'app/models/suggestion.model.php';
+    require_once 'app/view/api.view.php';
 
     class SuggestionApiController extends ApiController {
         private $view;
@@ -13,9 +13,9 @@
             $this->view = new ApiView();
         }
 
-        function get($params = []) {
+        function getAll($params = []) {
             if (empty($params)){
-                $sugerencias = $this->model->getSuggestion();
+                $sugerencias = $this->model->getSuggestions();
                 $this->view->response($sugerencias, 200);
             } else {
                 $sugerencia = $this->model->getSuggestion($params[':ID']);

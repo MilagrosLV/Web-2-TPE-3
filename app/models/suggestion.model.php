@@ -3,7 +3,7 @@
 
 class SuggestionModel  extends Model {  
     //Obtiene y devuelve de la base de datos todas las sugerencias.
-    function getSuggestion() {
+    function getSuggestions() {
         $query = $this->db->prepare('SELECT * FROM sugerencias');
         $query->execute();
 
