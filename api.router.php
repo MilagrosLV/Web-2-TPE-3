@@ -7,7 +7,7 @@
     $router = new Router();
 
     //                 endpoint        verbo(verb)     controller             método(method)
-    $router->addRoute('sugerencias',     'GET',    'SuggestionApiController', 'getAll'   );
+    $router->addRoute('sugerencias',     'GET',    'SuggestionApiController', 'get'   );
     $router->addRoute('sugerencias',     'POST',   'SuggestionApiController', 'create');
     $router->addRoute('sugerencias/:ID', 'GET',    'SuggestionApiController', 'get'   );
     $router->addRoute('sugerencias/:ID', 'PUT',    'SuggestionApiController', 'update');

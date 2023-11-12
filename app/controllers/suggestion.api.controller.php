@@ -13,7 +13,7 @@
             $this->view = new ApiView();
         }
 
-        function getAll($params = []) {
+        function get($params = []) {
             if (empty($params)){
                 $sugerencias = $this->model->getSuggestions();
                 $this->view->response($sugerencias, 200);
