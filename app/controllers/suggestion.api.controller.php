@@ -1,27 +1,29 @@
 <?php
     require_once 'app/controllers/api.controller.php';
 
-    require_once 'app/models/task.model.php';
+    require_once 'app/models/suggestion.model.php';
 
-    class TaskApiController extends ApiController {
+    class SuggestionApiController extends ApiController {
+        private $view;
         private $model;
 
         function __construct() {
             parent::__construct();
-            $this->model = new TaskModel();
+            $this->model = new SuggestionModel();
+            $this->view = new ApiView();
         }
 
         function get($params = []) {
             if (empty($params)){
-                $sugerencias = $this->model->getTasks();
+                $sugerencias = $this->model->getSuggestion();
                 $this->view->response($sugerencias, 200);
             } else {
-                $sugerencia = $this->model->getTask($params[':ID']);
+                $sugerencia = $this->model->getSuggestion($params[':ID']);
                 if(!empty($sugerencia)) {
                     if($params[':subrecurso']) {
                         switch ($params[':subrecurso']) {
                             case 'titulo':
-                                $this->view->response($sugerencia->titulo, 200); // Poner un igual =
+                                $this->view->response($sugerencia->titulo, 200); //Poner un igual =
                                 break;
                             case 'genero':
                                 $this->view->response($sugerencia->genero, 200);
@@ -48,16 +50,16 @@
 
         function delete($params = []) {
             $id = $params[':ID'];
-            $sugerencia = $this->model->getTask($id);
+            $sugerencia = $this->model->getSuggestion($id);
 
             if($sugerencia) {
-                $this->model->deleteTask($id);
+                $this->model->deleteSuggestion($id);
                 $this->view->response('La sugerencia con id='.$id.' ha sido borrada.', 200);
             } else {
                 $this->view->response('La sugerencia con id='.$id.' no existe.', 404);
             }
         }
-        //hay que hacer el DELETDE de un libro.S
+        //hay que hacer el DELETE de una sugerencia de libro.
 
         function create($params = []) {
             $body = $this->getData();
@@ -67,13 +69,13 @@
             $descripción = $body->descripción;
             $prioridad = $body->prioridad;
 
-            if (empty($titulo) || empty($prioridad)) {//CUALES CAMPOS DEJAR EN VACIO?
+            if (empty($titulo) || empty($prioridad)) {//Cuales campos dejar en vacio?
                 $this->view->response("Complete los datos", 400);
             } else {
-                $id = $this->model->insertTask($titulo, $genero, $descripción, $prioridad); //Cambiar los nombres (tales como insertTask) porque son código robado
+                $id = $this->model->insertSuggestion($titulo, $genero, $descripción, $prioridad); //Cambiar los nombres porque son código robado
 
-                // en una API REST es buena práctica es devolver el recurso creado
-                $sugerencia = $this->model->getTask($id);
+                //en una API REST es buena práctica devolver el recurso creado
+                $sugerencia = $this->model->getSuggestion($id);
                 $this->view->response($sugerencia, 201);
             }
     
@@ -81,7 +83,7 @@
 
         function update($params = []) {
             $id = $params[':ID'];
-            $sugerencia = $this->model->getTask($id);
+            $sugerencia = $this->model->getSuggestion($id);
 
             if($sugerencia) {
                 $body = $this->getData();
@@ -89,7 +91,8 @@
                 $genero = $body->genero;
                 $descripción = $body->descripción;
                 $prioridad = $body->prioridad;
-                $this->model->updateTask($id);
+
+                $this->model->updateSuggestion($id);
 
                 $this->view->response('La sugerencia con id='.$id.' ha sido modificada.', 200 or 201);
             }else {

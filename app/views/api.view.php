@@ -6,13 +6,16 @@
             echo json_encode($data);
         }
 
-        private function _requestStatus($code) {
+        private function _requestStatus($code) { 
             $status = array(
+            //Success
                 200 => "OK",
-                201 => "Created",
-                400 => "Bad Request", //Se agregó el 10/11/2023 (no necesariamente es correcto)
-                404 => "Not found",
-                500 => "Internal server error",
+                201 => "Created", //Creado
+            //Client Error
+                400 => "Bad Request", //Solicitud incorrecta --> Se agregó el 10/11/2023 (no necesariamente es correcto)
+                404 => "Not found", //Solicitud no encontrada
+            //Server Error
+                500 => "Internal server error", //Error interno del servidor
             );
             return (isset($status[$code])) ? $status[$code] : $status[500];
         }
