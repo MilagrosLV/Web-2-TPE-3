@@ -36,7 +36,7 @@
                     } else
                         $this->view->response($sugerencia, 200);
                 } else {
-                    $this->view->response(['msg' => 'La sugerencia con el id='.$params[':ID'].' no existe.'], 404);
+                    $this->view->response(['La sugerencia con el id='.$params[':ID'].' no existe.'], 404);
                 }
             }
         }
@@ -49,14 +49,17 @@
             $descripción = $body->descripción;
             $prioridad = $body->prioridad;
 
-            if (empty($titulo) || empty($genero) || empty($descripcion) || empty($prioridad)) {//Cuales campos dejar en vacio?
+            $id = $this->model->insertSuggestion($titulo, $genero, $descripción, $prioridad);
+            $this->view->response('La sugerencia fue insertada con el id='.$id, 201); //Devuelve el recurso creado.
+
+           /* if (empty($titulo) || empty($genero) || empty($descripción) || empty($prioridad)) {//Cuales campos dejar en vacio?
                 $this->view->response("Complete los datos", 400);
             } else {
                 $id = $this->model->insertSuggestion($titulo, $genero, $descripción, $prioridad); 
 
                 $sugerencia = $this->model->getSuggestion($id);
                 $this->view->response($sugerencia, 201); //Devuelve el recurso creado.
-            }
+            }*/
     
         }
 
@@ -66,6 +69,7 @@
 
             if($sugerencia) {
                 $body = $this->getData();
+
                 $titulo = $body->titulo;
                 $genero = $body->genero;
                 $descripción = $body->descripción;
@@ -73,10 +77,13 @@
                 
                 $this->model->updateSuggestionData($id, $titulo, $genero, $descripción, $prioridad);
 
-                $this->view->response('La sugerencia con id='.$id.' ha sido modificada.', 200 or 201);
+                $this->view->response('La sugerencia con id='.$id.' ha sido modificada.', 201);
             }else {
-                $this->view->response('La sugerencia con id='.$id.' no existe.', 400 or 404);
-            }
+                $this->view->response('La sugerencia con id='.$id.' no existe.', 404);
+            } /*
+                else {
+                $this->view->response('Solicitud incorrecta de la sugerencia con id='.$id.'.', 400);
+            }*/
         }
 
         function delete($params = []) {
@@ -92,3 +99,4 @@
         }
         //hay que hacer el DELETE de una sugerencia de libro.
     }
+?>

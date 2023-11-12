@@ -22,25 +22,26 @@ class SuggestionModel  extends Model {
     }
 
     //Inserta la sugerencia en la base de datos
-    function insertSuggestion($title, $genero, $description, $priority) {
+    function insertSuggestion($title, $genero, $descripción, $prioridad) {
         $query = $this->db->prepare('INSERT INTO sugerencias (titulo, genero, descripción, prioridad) VALUES(?,?,?,?)');
-        $query->execute([$title, $genero, $description, $priority]);
+        $query->execute([$title, $genero, $descripción, $prioridad]);
 
         return $this->db->lastInsertId();
     }
     
+    //Elimina la sugerencia en la BBDD
     function deleteSuggestion($id) {
         $query = $this->db->prepare('DELETE FROM sugerencias WHERE id = ?');
         $query->execute([$id]);
     }
 
-    function updateSuggestion($id) {    
-        $query = $this->db->prepare('UPDATE sugerencias SET finalizada = 1 WHERE id = ?');
+    /*function updateSuggestion($id) {     //CHEQUEAR
+        $query = $this->db->prepare('UPDATE sugerencias SET finalizada = 1 WHERE id = ?');//CHEQUEAR
         $query->execute([$id]);
-    }
+    }*/
 
     function updateSuggestionData($id, $titulo, $genero, $descripción, $prioridad) {    
-        $query = $this->db->prepare('UPDATE sugerencias SET titulo = ?, genero = ?, descripción = ?, prioridad = ?WHERE id = ?');
+        $query = $this->db->prepare('UPDATE sugerencias SET titulo = ?, genero = ?, descripción = ?, prioridad = ? WHERE id = ?');
         $query->execute([$titulo, $descripción, $prioridad, $id]);
     }
 }
