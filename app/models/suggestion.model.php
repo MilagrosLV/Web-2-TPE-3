@@ -22,9 +22,9 @@ class SuggestionModel  extends Model {
     }
 
     //Inserta la sugerencia en la base de datos
-    function insertSuggestion($title, $genero, $descripción, $prioridad) {
+    function insertSuggestion($titulo, $genero, $descripción, $prioridad) {
         $query = $this->db->prepare('INSERT INTO sugerencias (titulo, genero, descripción, prioridad) VALUES(?,?,?,?)');
-        $query->execute([$title, $genero, $descripción, $prioridad]);
+        $query->execute([$titulo, $genero, $descripción, $prioridad]);
 
         return $this->db->lastInsertId();
     }
