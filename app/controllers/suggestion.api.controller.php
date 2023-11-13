@@ -100,6 +100,7 @@
             if($sugerencia) {
                 $body = $this->getData();
 
+                $id = $body->id;
                 $titulo = $body->titulo;
                 $genero = $body->genero;
                 $descripción = $body->descripción;
@@ -107,14 +108,14 @@
                 
                 $this->model->updateSuggestionData($id, $titulo, $genero, $descripción, $prioridad);
 
-                if($id) {
+                /*if($sugerencia) {
                     $this->view->response(['La sugerencia con id='.$id.' ha sido modificada con éxito.'], 201);
                 } else {
                     $this->view->response(['Ocurrió un error al intentar modificar la sugerencia.'], 500);
 
                 }
 
-                if(empty($id)) {
+                if(empty($sugerencia)) {
                     $this->view->response(['No se proporconó una sugerencia para modificar'], 400);
 
                 }
@@ -138,19 +139,11 @@
             $sugerencia = $this->model->getSuggestion($id);
 
             if($sugerencia) {
-                
-                if($this->model->deleteSuggestion($id)) {
-                    $this->view->response(['La sugerencia con id='.$id.' se ha eliminado con éxito.'], 200);
-                    
-                } else {
-                    $this->view->response([
-                        'La sugerencia con id='.$id.' no se pudo eliminar debido a un error en el servidor.']
-                        , 500);
-                }
-
+                $this->view->response(['La sugerencia con id='.$id.' se ha eliminado con éxito.'], 200);
 
             } else {
                 $this->view->response(['La sugerencia con id='.$id.' no existe.'], 404);
+
             } 
             
             if(empty($sugerencia)) {
@@ -158,4 +151,5 @@
             }
         }
     }
+}
 ?>
