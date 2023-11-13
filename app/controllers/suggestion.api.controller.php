@@ -35,7 +35,7 @@
                 }
                 
                 if(empty($sugerencia)) {
-                    $this->view->response($sugerencia, 200);
+                    $this->view->response(['La sugerencia con el id='.$id.' no existe.'], 404);
 
                     /*if($params[':subrecurso']) {
                         switch ($params[':subrecurso']) {
@@ -56,7 +56,9 @@
                     }*/
 
                 } else {
-                    $this->view->response(['La sugerencia con el id='.$id.' no existe.'], 404);
+                    $this->view->response(['La sugerencia con el id='.$id.' se encontró exitosamente'], 200);
+                    $this->view->response($sugerencia, 200);
+
                 }
             }
         }
@@ -70,9 +72,12 @@
             $prioridad = $body->prioridad;
 
             $id = $this->model->insertSuggestion($titulo, $genero, $descripción, $prioridad);
-            $sugerencia = $this->model->getSuggestion($id);
+            // $sugerencia = $this->model->getSuggestion($id);
 
-            if($id) { 
+            $this->view->response(['La sugerencia fue insertada exitosamente con el id='.$id, 201]); //Devuelve el recurso creado.
+
+
+            /*if($id) { 
                 $this->view->response(['La sugerencia fue insertada exitosamente con el id='.$id, 201]); //Devuelve el recurso creado.
             } else {
                 $this->view->response(['La sugerencia no fue insertada', 500]);
@@ -81,7 +86,7 @@
             if (empty($titulo) || empty($genero) || empty($descripción) || empty($prioridad)) {
                 $this->view->response(["Complete TODOS los datos"], 400);
 
-            } 
+            } */
             
 
     
