@@ -2,13 +2,7 @@
     require_once 'app/models/model.php';
 
 class SuggestionModel  extends Model {  
-<<<<<<< Updated upstream
-
-
     //Obtiene y devuelve de la base de datos todas las sugerencias.
-=======
-    //Obtiene y devuelve de la BBDD todas las sugerencias.
->>>>>>> Stashed changes
     function getSuggestions() {
         $query = $this->db->prepare('SELECT * FROM sugerencias');
         $query->execute();
