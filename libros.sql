@@ -42,7 +42,7 @@ CREATE TABLE `sugerencias` (
 --
 
 INSERT INTO `sugerencias` (`id`, `titulo`, `genero`, `descripción`, `prioridad`) VALUES
-(12, 'fvgbhnjmk,.', 1, 'xdfghjklñ{\n', 1),
+(12, 'fvgbhnjmk,.', 1, 'xdfghjklñ{', 1),
 (13, 'vbnm,', 2, 'vbnm,.<-', 1),
 (14, 'cvbnm,.', 3, 'cvbnm,.-', 1),
 (15, 'cvbnm,.', 1, 'cvbnm,.-', 2),

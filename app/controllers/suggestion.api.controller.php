@@ -11,12 +11,24 @@
         }
 
         function get($params = []) {
+
             if (empty($params)){
+
+                $filterPending = false;
+
+                if(isset($_GET['pending'])) {
+                    $filterPending = _GET['pending'] == true;
+                }
+
+
+
                 $sugerencias = $this->model->getSuggestions();
                 $this->view->response($sugerencias, 200);
             } else {
                 $sugerencia = $this->model->getSuggestion($params[':ID']);
                 if(!empty($sugerencia)) {
+                    $this->view->response($sugerencia, 200);
+
                     if($params[':subrecurso']) {
                         switch ($params[':subrecurso']) {
                             case 'titulo':
@@ -33,8 +45,8 @@
                                 $this->view->response(['La sugerencia no contiene '.$params[':subrecurso'].'.'], 404);
                                 break;
                         }
-                    } else
-                        $this->view->response($sugerencia, 200);
+                    }
+                    
                 } else {
                     $this->view->response(['La sugerencia con el id='.$params[':ID'].' no existe.'], 404);
                 }

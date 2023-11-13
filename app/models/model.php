@@ -7,13 +7,13 @@
             $this->deploy();
         }
 
-        function deploy() {
-            // Chequear si hay tablas
+        private function deploy() {
             $query = $this->db->query('SHOW TABLES');
             $tables = $query->fetchAll(); // Nos devuelve todas las tablas de la db
-            if(count($tables)==0) {
+            if(count($tables) == 0) {
                 // Si no hay crearlas
                 $sql =<<<END
+
                 --
                 -- Estructura de tabla para la tabla `sugerencias`
                 --
@@ -31,7 +31,7 @@
                 --
                 
                 INSERT INTO `sugerencias` (`id`, `titulo`, `genero`, `descripción`, `prioridad`) VALUES
-                (12, 'fvgbhnjmk,.', 1, 'xdfghjklñ{\n', 1),
+                (12, 'fvgbhnjmk,.', 1, 'xdfghjklñ{', 1),
                 (13, 'vbnm,', 2, 'vbnm,.<-', 1),
                 (14, 'cvbnm,.', 3, 'cvbnm,.-', 1),
                 (15, 'cvbnm,.', 1, 'cvbnm,.-', 2),
@@ -61,6 +61,7 @@
                 ALTER TABLE `sugerencias`
                   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
                 COMMIT;
+                
                 END;
                 $this->db->query($sql);
             }
