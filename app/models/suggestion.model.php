@@ -2,9 +2,13 @@
     require_once 'app/models/model.php';
 
 class SuggestionModel  extends Model {  
+<<<<<<< Updated upstream
 
 
     //Obtiene y devuelve de la base de datos todas las sugerencias.
+=======
+    //Obtiene y devuelve de la BBDD todas las sugerencias.
+>>>>>>> Stashed changes
     function getSuggestions() {
         $query = $this->db->prepare('SELECT * FROM sugerencias');
         $query->execute();
@@ -42,8 +46,9 @@ class SuggestionModel  extends Model {
         $query->execute([$id]);
     }*/
 
+    //Modifica la sugerencia en la BBDD
     function updateSuggestionData($id, $titulo, $genero, $descripción, $prioridad) {    
         $query = $this->db->prepare('UPDATE sugerencias SET titulo = ?, genero = ?, descripción = ?, prioridad = ? WHERE id = ?');
-        $query->execute([$titulo, $descripción, $prioridad, $id]);
+        $query->execute([$titulo, $genero, $descripción, $prioridad, $id]);
     }
 }
