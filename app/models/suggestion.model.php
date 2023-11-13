@@ -2,12 +2,6 @@
     require_once 'app/models/model.php';
 
 class SuggestionModel  extends Model {  
-    private $db;
-
-    function __construct () {
-        $this->db = new PDO('mysql:host=' . MYSQL_HOST . ';dbname='. MYSQL_DB .';charset=utf8', MYSQL_USER, MYSQL_PASS);
-    }
-
 
 
     //Obtiene y devuelve de la base de datos todas las sugerencias.

@@ -5,6 +5,7 @@
 
 
 
+
     $router = new Router();
 
     //                 endpoint        verbo(verb)     controller             método(method)
@@ -14,11 +15,14 @@
     $router->addRoute('sugerencias/:ID', 'PUT',    'SuggestionApiController', 'update');
     $router->addRoute('sugerencias/:ID', 'DELETE', 'SuggestionApiController', 'delete');
     
-   /* $router->addRoute('sugerencias/:ID/:subrecurso', 'GET', 'SuggestionApiController', 'get'   ); 
+  
    //Si es filtrar, va como query para ?titulo=algo (en la petición va el GET, no usar /)
-   */
+ 
     
 
     $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);
+
+
+
 
 ?>
