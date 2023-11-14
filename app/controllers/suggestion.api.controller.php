@@ -14,28 +14,32 @@
         function get($params = []) {
 
             if (empty($params)){
-
-                /*$filterPending = false;
-
-                if(isset($_GET['pending'])) {
-                    $filterPending = _GET['pending'] == true;
-                }*/
-
-
-
                 $sugerencias = $this->model->getSuggestions();
                 $this->view->response($sugerencias, 200);
+
+                //Petición GET con filtro
+                /*$filterTitle = false;
+
+                if(isset($_GET['titulo'])) {
+                    $filterTitle = _GET['titulo'] == true;
+                }*/
 
             } else {
                 $sugerencia = $this->model->getSuggestion($params[':ID']);
 
-                $id = $params[':ID'];
-                if (empty($id)) {
+                if (empty($sugerencia)) {
                     $this->view->response(['No se solicitó un id'], 400);
+                } else {
+                    $this->view->response(['La sugerencia con el id='.$id.' no existe.'], 404);
                 }
                 
+<<<<<<< HEAD
                 if(empty($sugerencia)) {
                     $this->view->response(['La sugerencia con el id='.$id.' no existe.'], 404);
+=======
+                if($sugerencia) {
+                    $this->view->response($sugerencia, 200);
+>>>>>>> f9098fc9dfe42898cf21713f2bc8c4aabbe37f97
 
                     /*if($params[':subrecurso']) {
                         switch ($params[':subrecurso']) {
@@ -54,12 +58,16 @@
                                 break;
                         }
                     }*/
+<<<<<<< HEAD
 
                 } else {
                     $this->view->response(['La sugerencia con el id='.$id.' se encontró exitosamente'], 200);
                     $this->view->response($sugerencia, 200);
 
                 }
+=======
+                } 
+>>>>>>> f9098fc9dfe42898cf21713f2bc8c4aabbe37f97
             }
         }
 
@@ -71,6 +79,7 @@
             $descripción = $body->descripción;
             $prioridad = $body->prioridad;
 
+<<<<<<< HEAD
             $id = $this->model->insertSuggestion($titulo, $genero, $descripción, $prioridad);
             // $sugerencia = $this->model->getSuggestion($id);
 
@@ -83,19 +92,28 @@
                 $this->view->response(['La sugerencia no fue insertada', 500]);
             }
 
+=======
+>>>>>>> f9098fc9dfe42898cf21713f2bc8c4aabbe37f97
             if (empty($titulo) || empty($genero) || empty($descripción) || empty($prioridad)) {
-                $this->view->response(["Complete TODOS los datos"], 400);
+                $this->view->response(["Complete los datos"], 400);
+            } else {
+                $id = $this->model->insertSuggestion($titulo, $genero, $descripción, $prioridad);
 
+<<<<<<< HEAD
             } */
             
 
     
+=======
+                $sugerencia = $this->model->getSuggestion($id);
+                $this->view->response(['La sugerencia fue insertada exitosamente con el id='.$id, 201]); //Devuelve el recurso creado.
+            }            
+>>>>>>> f9098fc9dfe42898cf21713f2bc8c4aabbe37f97
         }
 
         function update($params = []) {
             $id = $params[':ID'];
             $sugerencia = $this->model->getSuggestion($id);
-            $data = $this -> getData();
 
             if($sugerencia) {
                 $body = $this->getData();
@@ -108,21 +126,25 @@
                 
                 $this->model->updateSuggestionData($id, $titulo, $genero, $descripción, $prioridad);
 
+<<<<<<< HEAD
                 /*if($sugerencia) {
                     $this->view->response(['La sugerencia con id='.$id.' ha sido modificada con éxito.'], 201);
                 } else {
                     $this->view->response(['Ocurrió un error al intentar modificar la sugerencia.'], 500);
+=======
+                $this->view->response(['La sugerencia con id='.$id.' ha sido modificada con éxito.'], 201);
+>>>>>>> f9098fc9dfe42898cf21713f2bc8c4aabbe37f97
 
+                if($id) {
+                    $this->view->response(['Ocurrió un error al intentar modificar la sugerencia.'], 500);
                 }
 
                 if(empty($sugerencia)) {
                     $this->view->response(['No se proporconó una sugerencia para modificar'], 400);
-
                 }
 
                 if (empty($id) || empty($titulo) || empty($genero) || empty($descripción) || empty($prioridad)) {
                     $this->view->response(["Faltó modificar algun campo"], 400);
-    
                 } 
 
 
@@ -139,15 +161,25 @@
             $sugerencia = $this->model->getSuggestion($id);
 
             if($sugerencia) {
+<<<<<<< HEAD
                 $this->view->response(['La sugerencia con id='.$id.' se ha eliminado con éxito.'], 200);
 
             } else {
                 $this->view->response(['La sugerencia con id='.$id.' no existe.'], 404);
 
+=======
+                $this->view->response('La sugerencia se ha eliminado con éxito.', 200);
+            } else {
+                $this->view->response('La sugerencia con id='.$id.' no existe.', 404);
+>>>>>>> f9098fc9dfe42898cf21713f2bc8c4aabbe37f97
             } 
             
             if(empty($sugerencia)) {
                 $this->view->response(['Error en la solicitud de id'], 400);
+            } else {
+                $this->view->response([
+                    'La sugerencia con id='.$id.' no se pudo eliminar debido a un error en el servidor.']
+                    , 500);
             }
         }
     }
