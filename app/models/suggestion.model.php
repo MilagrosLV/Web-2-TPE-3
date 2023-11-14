@@ -3,7 +3,6 @@
 
 class SuggestionModel  extends Model {  
 
-
     //Obtiene y devuelve de la base de datos todas las sugerencias.
     function getSuggestions() {
         $query = $this->db->prepare('SELECT * FROM sugerencias');
@@ -36,11 +35,6 @@ class SuggestionModel  extends Model {
         $query = $this->db->prepare('DELETE FROM sugerencias WHERE id = ?');
         $query->execute([$id]);
     }
-
-    /*function updateSuggestion($id) {     //CHEQUEAR
-        $query = $this->db->prepare('UPDATE sugerencias SET finalizada = 1 WHERE id = ?');//CHEQUEAR
-        $query->execute([$id]);
-    }*/
 
     function updateSuggestionData($id, $titulo, $genero, $descripción, $prioridad) {    
         $query = $this->db->prepare('UPDATE sugerencias SET titulo = ?, genero = ?, descripción = ?, prioridad = ? WHERE id = ?');

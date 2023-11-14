@@ -14,4 +14,3 @@
             return json_decode($this->data);
         } //Devuelve un JSON de los datos si es que son necesitados.
     }
-?>
